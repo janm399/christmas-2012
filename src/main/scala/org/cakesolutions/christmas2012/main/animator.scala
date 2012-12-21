@@ -40,12 +40,13 @@ trait ConsoleSparkler extends Sparkler {
   case object One extends ConsoleSparkleStage {
     def ansiColour(f: Tree => String)(tree: Tree): AnsiString = {
       val c = tree match {
-        case _: LeftNeedle => ANSI_GREEN
-        case _: RightNeedle => ANSI_GREEN
-        case _: Ball => ANSI_RED
-        case _: BigBall => ANSI_CYAN
-        case _: ElectricCandle => ANSI_WHITE
-        case _ => ANSI_BLACK
+        case _: LeftNeedle     => ANSI_GREEN
+        case _: RightNeedle    => ANSI_GREEN
+        case _: Spike          => ANSI_PURPLE
+        case _: Ball           => ANSI_RED
+        case _: BigBall        => ANSI_CYAN
+        case _: ElectricCandle => ANSI_BLUE
+        case _                 => ANSI_BLACK
       }
       val s = f(tree)
       AnsiString(ANSI_BOLD + c + s, s.length)
@@ -54,8 +55,8 @@ trait ConsoleSparkler extends Sparkler {
   case object Two extends ConsoleSparkleStage {
     def ansiColour(f: Tree => String)(tree: Tree): AnsiString = {
       val c = tree match {
-        case _: LeftNeedle => ANSI_GREEN
-        case _: RightNeedle => ANSI_GREEN
+        case _: LeftNeedle     => ANSI_GREEN
+        case _: RightNeedle    => ANSI_GREEN
         case _: ElectricCandle => ANSI_YELLOW
         case _ => ANSI_BLACK
       }
@@ -100,7 +101,7 @@ trait ConsoleSparkler extends Sparkler {
                     f: (Tree) => AnsiString): (Tree, AnsiString) = {
         t match {
           case l: LeftNeedle => (l.left, f(l) + "." + acc)
-          case t: Tree => walkLevel(t.left, f(t) + "." + acc, f)
+          case t: TreeNode => walkLevel(t.left, f(t) + "." + acc, f)
         }
       }
 

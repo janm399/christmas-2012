@@ -5,7 +5,7 @@ version := "1.0"
 
 organization := "org.cakesolutions"
 
-scalaVersion := "2.10.0-RC3"
+scalaVersion := "2.10.0"
 
 /** Shell */
 shellPrompt := { state => System.getProperty("user.name") + "> " }
@@ -26,25 +26,6 @@ resolvers += "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/reposi
 resolvers += "neo4j repo" at "http://m2.neo4j.org/content/repositories/releases/"
 
 resolvers += "neo4j snapshot repo" at "http://m2.neo4j.org/content/groups/public/"
-
-libraryDependencies <<= scalaVersion { scala_version => 
-	val sprayVersion = "1.1-M6"
-	val akkaVersion  = "2.1.0-RC3"
-	Seq(
-		"com.typesafe.akka"    % "akka-kernel"         % akkaVersion cross CrossVersion.full,
-		"com.typesafe.akka"    % "akka-actor"          % akkaVersion cross CrossVersion.full,
-		"io.spray"             % "spray-can"           % sprayVersion,
-		"io.spray"             % "spray-routing"       % sprayVersion,
-		"io.spray"             % "spray-httpx"         % sprayVersion,
-		"io.spray"             % "spray-util"          % sprayVersion,
-		"io.spray"             % "spray-client"        % sprayVersion,
-		"org.neo4j"            % "neo4j"               % "1.9-M02",
-		"io.spray"             % "spray-json"          % "1.2.3" cross CrossVersion.full,
-		"org.specs2"           % "classycle"           % "1.4.1" % "test",
-		"com.typesafe.akka"    % "akka-testkit"        % akkaVersion  % "test" cross CrossVersion.full,
-		"org.specs2"           % "specs2"              % "1.12.3" % "test"  cross CrossVersion.full
-	)
-}
 
 /** Compilation */
 javaOptions += "-Xmx2G"
