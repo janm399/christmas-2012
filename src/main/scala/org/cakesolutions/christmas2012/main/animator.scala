@@ -46,7 +46,7 @@ trait ConsoleSparkler extends Sparkler {
         case _: Ball           => ANSI_RED
         case _: BigBall        => ANSI_CYAN
         case _: ElectricCandle => ANSI_BLUE
-        case _                 => ANSI_BLACK
+        case _                 => ANSI_WHITE
       }
       val s = f(tree)
       AnsiString(ANSI_BOLD + c + s, s.length)
@@ -58,7 +58,7 @@ trait ConsoleSparkler extends Sparkler {
         case _: LeftNeedle     => ANSI_GREEN
         case _: RightNeedle    => ANSI_GREEN
         case _: ElectricCandle => ANSI_YELLOW
-        case _ => ANSI_BLACK
+        case _                 => ANSI_WHITE
       }
       val s = f(tree)
       AnsiString(ANSI_BOLD + c + s, s.length)
